@@ -20,28 +20,28 @@ Chart.register(...registerables);
       <!-- KPI Cards -->
       <div class="kpi-grid">
         <div class="kpi-card kpi-green">
-          <div class="kpi-icon"><i class="fas fa-dollar-sign"></i></div>
+          <div class="kpi-icon-wrap"><i class="fas fa-dollar-sign"></i></div>
           <div class="kpi-info">
             <span class="kpi-label">Faturamento Mensal</span>
             <span class="kpi-value">R$ {{data.faturamentoMensal | number:'1.2-2'}}</span>
           </div>
         </div>
         <div class="kpi-card kpi-blue">
-          <div class="kpi-icon"><i class="fas fa-clipboard-list"></i></div>
+          <div class="kpi-icon-wrap"><i class="fas fa-clipboard-list"></i></div>
           <div class="kpi-info">
             <span class="kpi-label">Pedidos no Mes</span>
             <span class="kpi-value">{{data.totalPedidosMes}}</span>
           </div>
         </div>
         <div class="kpi-card kpi-purple">
-          <div class="kpi-icon"><i class="fas fa-hamburger"></i></div>
+          <div class="kpi-icon-wrap"><i class="fas fa-hamburger"></i></div>
           <div class="kpi-info">
             <span class="kpi-label">Pratos Ativos</span>
             <span class="kpi-value">{{data.pratosAtivos}}</span>
           </div>
         </div>
-        <div class="kpi-card" [class]="data.insumosAbaixoMinimo > 0 ? 'kpi-red' : 'kpi-green'">
-          <div class="kpi-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div class="kpi-card" [class]="data.insumosAbaixoMinimo > 0 ? 'kpi-card kpi-red' : 'kpi-card kpi-green'">
+          <div class="kpi-icon-wrap"><i class="fas fa-exclamation-triangle"></i></div>
           <div class="kpi-info">
             <span class="kpi-label">Insumos Estoque Baixo</span>
             <span class="kpi-value">{{data.insumosAbaixoMinimo}}</span>
@@ -65,7 +65,7 @@ Chart.register(...registerables);
       <div class="charts-grid">
         <div class="card">
           <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
-            <span><i class="fas fa-trophy" style="color:#FCD34D;"></i> Top 5 Pratos Mais Vendidos</span>
+            <span><i class="fas fa-trophy" style="color:#F59E0B;"></i> Top 5 Pratos Mais Vendidos</span>
             <div style="display:flex;gap:6px;align-items:center;">
               <input type="date" class="form-control" [(ngModel)]="topInicio" style="width:auto;padding:4px 8px;font-size:12px;">
               <input type="date" class="form-control" [(ngModel)]="topFim" style="width:auto;padding:4px 8px;font-size:12px;">
@@ -110,31 +110,33 @@ Chart.register(...registerables);
     </div>
   `,
   styles: [`
-    .dash-title { margin-bottom: 24px; color: #F9FAFB; font-weight: 700; }
-    .dash-title i { color: #DC2626; }
+    .dash-title { margin-bottom: 24px; color: var(--text-primary); font-weight: 700; }
+    .dash-title i { color: var(--primary); }
 
     .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 24px; }
     .kpi-card {
       display: flex; align-items: center; gap: 16px; padding: 22px;
-      border-radius: 14px; color: white; border: 1px solid #222;
+      border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
-    .kpi-green { background: linear-gradient(135deg, #111 0%, #0A2E1A 100%); border-color: #16A34A; }
-    .kpi-green .kpi-icon { color: #4ADE80; }
-    .kpi-blue { background: linear-gradient(135deg, #111 0%, #0A1A2E 100%); border-color: #2563EB; }
-    .kpi-blue .kpi-icon { color: #60A5FA; }
-    .kpi-purple { background: linear-gradient(135deg, #111 0%, #1A0A2E 100%); border-color: #7C3AED; }
-    .kpi-purple .kpi-icon { color: #A78BFA; }
-    .kpi-red { background: linear-gradient(135deg, #111 0%, #2E0A0A 100%); border-color: #DC2626; }
-    .kpi-red .kpi-icon { color: #FCA5A5; }
+    .kpi-green .kpi-icon-wrap { background: rgba(22,163,74,0.1); color: #16A34A; }
+    .kpi-blue .kpi-icon-wrap { background: rgba(59,130,246,0.1); color: #3B82F6; }
+    .kpi-purple .kpi-icon-wrap { background: rgba(124,58,237,0.1); color: #7C3AED; }
+    .kpi-red .kpi-icon-wrap { background: rgba(220,38,38,0.1); color: #DC2626; }
+    .kpi-icon-wrap {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
     .kpi-icon { font-size: 30px; }
     .kpi-info { display: flex; flex-direction: column; }
-    .kpi-label { font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.05em; }
-    .kpi-value { font-size: 26px; font-weight: 700; margin-top: 2px; }
+    .kpi-label { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em; }
+    .kpi-value { font-size: 26px; font-weight: 700; margin-top: 2px; color: #0F172A; }
 
     .charts-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
     .alerts-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    .alert-header-danger { color: #FCA5A5; }
-    .alert-header-warning { color: #FCD34D; }
+    .alert-header-danger { color: #DC2626; }
+    .alert-header-warning { color: #D97706; }
 
     @media (max-width: 768px) {
       .charts-grid, .alerts-grid { grid-template-columns: 1fr; }
@@ -210,8 +212,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         datasets: [{
           label: 'Faturamento (R$)',
           data: valores,
-          borderColor: '#DC2626',
-          backgroundColor: 'rgba(220,38,38,0.1)',
+          borderColor: '#F97316',
+          backgroundColor: 'rgba(249,115,22,0.08)',
           fill: true,
           tension: 0.4
         }]
@@ -220,8 +222,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         responsive: true,
         plugins: { legend: { display: false } },
         scales: {
-          y: { beginAtZero: true, ticks: { color: '#6B7280' }, grid: { color: '#222' } },
-          x: { ticks: { color: '#6B7280' }, grid: { color: '#222' } }
+          y: { beginAtZero: true, ticks: { color: '#64748B' }, grid: { color: '#E2E8F0' } },
+          x: { ticks: { color: '#64748B' }, grid: { color: '#E2E8F0' } }
         }
       }
     });
@@ -235,7 +237,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const statusData = this.data.pedidosPorStatus;
     const labels = Object.keys(statusData);
     const valores = Object.values(statusData);
-    const colors = ['#FCD34D', '#60A5FA', '#4ADE80', '#DC2626', '#F87171'];
+    const colors = ['#F59E0B', '#3B82F6', '#22C55E', '#DC2626', '#F87171'];
 
     new Chart(ctx, {
       type: 'doughnut',
@@ -248,7 +250,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
       options: {
         responsive: true,
-        plugins: { legend: { position: 'bottom', labels: { color: '#9CA3AF' } } }
+        plugins: { legend: { position: 'bottom', labels: { color: '#64748B' } } }
       }
     });
   }
@@ -262,7 +264,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     const labels = this.topPratos.map(t => t.pratoNome);
     const valores = this.topPratos.map(t => t.quantidadeVendida);
-    const colors = ['#DC2626', '#F87171', '#FCA5A5', '#FECACA', '#FEE2E2'];
+    const colors = ['#F97316', '#FB923C', '#FDBA74', '#FED7AA', '#FFEDD5'];
 
     this.topChart = new Chart(ctx, {
       type: 'bar',
@@ -281,8 +283,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         responsive: true,
         plugins: { legend: { display: false } },
         scales: {
-          x: { beginAtZero: true, ticks: { color: '#6B7280', stepSize: 1 }, grid: { color: '#222' } },
-          y: { ticks: { color: '#9CA3AF' }, grid: { display: false } }
+          x: { beginAtZero: true, ticks: { color: '#64748B', stepSize: 1 }, grid: { color: '#E2E8F0' } },
+          y: { ticks: { color: '#64748B' }, grid: { display: false } }
         }
       }
     });

@@ -111,7 +111,7 @@ import { Compra, Fornecedor, Insumo } from '../../shared/models/models';
             </div>
             <button type="button" class="btn btn-secondary btn-sm" (click)="adicionarItem()"><i class="fas fa-plus"></i> Item</button>
           </div>
-          <p *ngIf="editando" style="margin:12px 0;color:var(--gray-500);font-size:0.9em;">
+          <p *ngIf="editando" style="margin:12px 0;color:#64748B;font-size:0.9em;">
             <i class="fas fa-info-circle"></i> Os itens nao podem ser editados. Para corrigir, cancele e crie um novo pedido.
           </p>
 

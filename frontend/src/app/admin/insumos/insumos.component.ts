@@ -281,8 +281,8 @@ export class InsumosComponent implements OnInit {
         responsive: true,
         plugins: { legend: { display: false } },
         scales: {
-          y: { beginAtZero: false, ticks: { color: '#6B7280' }, grid: { color: '#222' } },
-          x: { ticks: { color: '#6B7280' }, grid: { color: '#222' } }
+          y: { beginAtZero: false, ticks: { color: '#64748B' }, grid: { color: '#E2E8F0' } },
+          x: { ticks: { color: '#64748B' }, grid: { color: '#E2E8F0' } }
         }
       }
     });
