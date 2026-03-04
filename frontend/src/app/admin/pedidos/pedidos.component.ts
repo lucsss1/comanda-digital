@@ -45,7 +45,7 @@ import { Pedido } from '../../shared/models/models';
                   'badge-success': p.statusPedido === 'PRONTO' || p.statusPedido === 'ENTREGUE',
                   'badge-danger': p.statusPedido === 'CANCELADO'
                 }">{{p.statusPedido}}</span>
-                <div *ngIf="p.motivoCancelamento" style="font-size:11px;color:#FCA5A5;margin-top:4px;">
+                <div *ngIf="p.motivoCancelamento" style="font-size:11px;color:#DC2626;margin-top:4px;">
                   <i class="fas fa-info-circle"></i> {{p.motivoCancelamento}}
                 </div>
               </td>
@@ -88,7 +88,7 @@ import { Pedido } from '../../shared/models/models';
           <textarea class="form-control" [(ngModel)]="motivoCancelamento" rows="3"
                     placeholder="Informe o motivo do cancelamento..."></textarea>
         </div>
-        <p *ngIf="cancelEstorno" style="font-size:0.85em;color:#FCD34D;margin:8px 0;">
+        <p *ngIf="cancelEstorno" style="font-size:0.85em;color:#D97706;margin:8px 0;">
           <i class="fas fa-exclamation-triangle"></i> O estoque dos insumos sera estornado automaticamente.
         </p>
         <div class="modal-footer">
